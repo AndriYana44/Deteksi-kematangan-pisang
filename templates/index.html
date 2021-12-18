@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klasifikasi Kematangan pisang</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome/css/all.css') }}">
+</head>
+<body>
+
+    <style>
+        .display-wrapper {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        img {
+            width: 250px;
+        }
+        @media only screen and (max-width: 600px) {
+            img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+
+    <div class="container mt-2">
+        <div class="row justify-content-center">
+            <div class="col-sm-6 text-center">
+                <hr>
+                <h3>Klasifikasi Kematangan Pisang</h3>
+                <hr>
+                <span>
+                    <i class="fab fa-github"></i>
+                    My Github -> 
+                    <a target="_blank" href="http://github.com/AndriYana44">here</a>
+                </span><br>
+                <small class="copyright">&copy; Created by: Andri Yana</small>
+                <br><br>
+                {% if flash_success != None : %}
+                <div class="alert alert-primary" role="alert">
+                    Initialization success
+                </div>
+                {% endif %}
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="form-group text-left">
+                        <label for="">Masukan Gambar Pisang</label>
+                        <input type="file" name="file" class="form-control file" onchange="loadFile(event)">
+                    </div>
+                    <div class="display-wrapper" hidden>
+                        <img src="" alt="display.image" id="display">
+                    </div>
+                    {% if result != None : %}
+                        <div class="result-wrapper">
+                            <img src="/static/image_upload/{{ filename }}" alt="display.image" id="result_image">
+                        </div>
+                        <h4 class="text-success">Pisang {{ result }}</h4>
+                    {% endif %}
+                    <div class="btn-wrapper text-left mt-3" hidden>
+                        <button type="submit" class="btn btn-primary btn-block">Check</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script>
+        var loadFile = function(event) {
+            $('.result-wrapper').attr('hidden', 'on');
+            document.querySelector('.display-wrapper').removeAttribute('hidden');
+            document.querySelector('.btn-wrapper').removeAttribute('hidden');
+            var image = document.getElementById('display');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        (function flash_message() {
+            setTimeout(() => {
+                $('.alert').slideUp(300);
+            }, 3000);
+        })();
+    </script>
+</body>
+</html>
