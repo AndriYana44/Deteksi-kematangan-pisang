@@ -62,11 +62,11 @@ def home():
             rgb = getAverage(image)
 
             # cek kematangan berdasarkan warna RGB
-            if (rgb[0] - rgb[1]) < 23 and (rgb[0] - rgb[1]) > 11 and rgb[2] > 50 :
+            if (rgb[0] - rgb[1]) < 30 and (rgb[0] - rgb[1]) > 11 and rgb[2] > 50 and rgb[2] < rgb[0] and rgb[2] < rgb[1]:
                 result = 'sangat matang'
-            elif (rgb[0] - rgb[1]) < 12 and (rgb[0] - rgb[1]) > 0 and rgb[2] > 50 :
+            elif (rgb[0] - rgb[1]) < 12 and (rgb[0] - rgb[1]) > 0  and rgb[2] > 50 and rgb[2] < rgb[0] and rgb[2] < rgb[1]:
                 result = 'matang'
-            elif (rgb[0] - rgb[1]) < 0 and (rgb[0] - rgb[1]) > -12 and rgb[2] > 50 :
+            elif (rgb[0] - rgb[1]) < 0 and (rgb[0] - rgb[1]) > -24 and rgb[2] > 50 and rgb[2] < rgb[0] and rgb[2] < rgb[1]:
                 result = 'mentah'
             else :
                 result = 'tidak terdeteksi'
