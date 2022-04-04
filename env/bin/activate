@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/mac/Andri/Projects/conge/pisang/env"
+VIRTUAL_ENV="/Users/mac/Andri/Projects/django/Env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -54,7 +54,7 @@ fi
 
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
-    PS1="(env) ${PS1:-}"
+    PS1="(Env) ${PS1:-}"
     export PS1
 fi
 

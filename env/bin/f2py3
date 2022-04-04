@@ -1,4 +1,4 @@
-#!/Users/mac/Andri/Projects/conge/pisang/env/bin/python3.9
+#!/Users/mac/Andri/Projects/django/Env/bin/python3.9
 # -*- coding: utf-8 -*-
 import re
 import sys
