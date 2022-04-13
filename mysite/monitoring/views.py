@@ -10,9 +10,10 @@ from os.path import exists
 import cv2
 from monitoring.models import Suhu
 from PIL import Image
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
-host = '192.168.43.197:8000'
+host = '192.168.43.197:80'
 
 def index(request):
     # set img to hsv
@@ -53,6 +54,7 @@ def suhuapi(request):
     res = list(suhu)
     return JsonResponse(res[0], safe=False)
 
+@csrf_exempt
 def upload(request):
     BASE_DIR_UPLOAD = 'monitoring/static/image/'
     if request.method == 'POST' and request.FILES['imageFile']:
@@ -76,6 +78,7 @@ def upload(request):
         percentage = percentageFIX(weight)
         hasil = max(weight, key=weight.get)
         return render(request, 'monitoring/index.html', {
+            'host':host,
             'hasil':hasil, 
             'bobot':weight,
             'persentase':percentage,})
